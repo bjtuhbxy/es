@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <!-- <div class="statusbar"></div> -->
+
     <router-view/>
   </div>
 </template>
@@ -17,6 +17,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  font-size: 16px;
   height: 100%;
 }
 </style>
