@@ -10,6 +10,7 @@ import Framework7 from 'framework7/framework7.esm.bundle.js'
 import Searchbar from 'framework7/components/searchbar/searchbar.js'
 import Calendar from 'framework7/components/calendar/calendar.js'
 import Popup from 'framework7/components/popup/popup.js'
+import Public from './public.js'
 
 // Import F7 Styles
 import 'framework7/css/framework7.css'
