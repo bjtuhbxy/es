@@ -2,7 +2,9 @@
 (function () {
   // 默认执行
   document.documentElement.style.fontSize = document.documentElement.clientWidth / 1000*100 + 'px';
-  // 返回给全局的对象
-  return {
-  }
+
 })()
+// 返回给全局的对象
+export default {
+  Jp:JSON.parse
+};
