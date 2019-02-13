@@ -23,19 +23,19 @@
       </div>
       <mt-tabbar v-model="selected" fixed>
         <mt-tab-item id="外卖">
-          <img slot="icon" src="">
+          <span class="iconfont icon-diancan"></span>
           外卖
         </mt-tab-item>
         <mt-tab-item id="订单">
-          <img slot="icon" src="">
+          <span class="iconfont icon-dingdan"></span>
           订单
         </mt-tab-item>
         <mt-tab-item id="发现">
-          <img slot="icon" src="">
+          <span class="iconfont icon-faxian"></span>
           发现
         </mt-tab-item>
         <mt-tab-item id="我的">
-          <img slot="icon" src="">
+          <span class="iconfont icon-wode"></span>
           我的
         </mt-tab-item>
       </mt-tabbar>
@@ -70,4 +70,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .iconfont{
+    display: block;
+  }
 </style>

@@ -3,6 +3,7 @@
     <mt-cell :title="'餐厅 '" />
     <mt-cell :title="'餐厅 '" />
     <mt-cell :title="'餐厅 '" />
+    <button @click="toDemo">demo</button>
   </div>
 </template>
 
@@ -12,6 +13,13 @@ export default {
   data () {
     return {
       selected: '外卖'
+    }
+  },
+  methods:{
+    toDemo:function () {
+      this.$router.push({//你需要接受路由的参数再跳转
+        path: '/demo'
+      });
     }
   }
 }

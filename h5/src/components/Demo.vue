@@ -1,6 +1,7 @@
 <template>
   <div>
     Demo
+    <button @click="pop"><返回</button>
   </div>
 </template>
 
@@ -9,6 +10,11 @@ export default {
   name: 'Demo',
   data () {
     return {
+    }
+  },
+  methods:{
+    pop:function () {
+      this.$router.go(-1)
     }
   }
 }
