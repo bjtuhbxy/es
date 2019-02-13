@@ -18,7 +18,7 @@ export default {
   methods:{
     toDemo:function () {
       this.$router.push({//你需要接受路由的参数再跳转
-        path: '/demo'
+        path: '/home/demo'
       });
     }
   }

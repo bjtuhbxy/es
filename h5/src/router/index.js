@@ -21,6 +21,11 @@ export default new Router({
       component: Demo
     },
     {
+      path: '/home/demo',
+      name: 'Demo',
+      component: Demo
+    },
+    {
       path: '/t',
       name: 'Test',
       component: Test
