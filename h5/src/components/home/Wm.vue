@@ -21,38 +21,23 @@
       </mt-swipe-item>
     </mt-swipe>
     <div class="recommend">推荐商家</div>
-    <div id="shopSort" :class="sort?'mountting' : '' ">
-      <span class="shop-option">综合排序</span>
-      <span class="shop-option">距离最近</span>
-      <span class="shop-option">品质联盟</span>
-      <span class="shop-option">筛选</span>
+    <div id="shopSort" :class="sort?'mountting' : '' " ref="sort">
+      <span class="shop-option" @click="zhpx" :class="sortCard ? 'shop-option_s' : ''">
+        {{sortValue[0]}}
+      </span>
+      <span class="shop-option">{{sortValue[1]}}</span>
+      <span class="shop-option">{{sortValue[2]}}</span>
+      <span class="shop-option">{{sortValue[3]}}</span>
+      <div class="sort_card" v-if="sortCard" @click="sortCard = false">
+        <ul class="sort_list">
+          <li @click="sypx(item)" v-for="item in sortList">
+            <span v-if="item == sortValue[0]" class="active">{{item}}</span>
+            <span v-else>{{item}}</span>
+          </li>
+        </ul>
+      </div>
     </div>
     <div>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
       123<br/>
       123<br/>
       123<br/>
@@ -73,8 +58,15 @@
     name: 'Wm',
     data() {
       return {
-        sort:false,
-        selected: '外卖',
+        sort: false,//排序吸顶样式
+        sortCard: false,//排序面板
+        selected: 'wm',// 默认选中的页签
+        sortValue: [
+          '综合排序', '距离最近', '品质联盟', '筛选'
+        ],
+        sortList: [
+          '综合排序', '好评优先', '销量优先', '起送价最低', '配送最快'
+        ],
         foodTypes: [{
           img: 'https://fuss10.elemecdn.com/7/d8/a867c870b22bc74c87c348b75528djpeg.jpeg?imageMogr/format/webp/thumbnail/!90x90r/gravity/Center/crop/90x90/',
           title: '美食'
@@ -116,24 +108,31 @@
           path: '/home/demo'
         });
       },
-      handleScroll () {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        let offsetTop = document.querySelector('#shopSort').offsetTop
-        scrollTop > offsetTop ? this.searchBarFixed = true : this.searchBarFixed = false;
+      zhpx: function () {
+        document.documentElement.scrollTop = 200
+        this.sortCard = !this.sortCard
       },
+      sypx: function (item) {
+        this.sortValue[0] = item
+      }
     },
     watch: {
+      sortCard: function (n, o) {
+        if (n) {
+          //滚动冒泡
+        }
+      },
 
     },
     mounted() {
-      window.addEventListener('scroll',()=>{
-        let top = document.documentElement.scrollTop
-        if (top >= 200){
+      window.addEventListener('scroll', () => {
+        let top = document.documentElement.scrollTop;
+        if (top >= 200) {
           this.sort = true
-        }else {
+        } else {
           this.sort = false
         }
-      },false)
+      }, false)
     }
   }
 </script>
@@ -176,21 +175,49 @@
     height: 4px !important;
     border-radius: 14%;
   }
-  #shopSort{
-    background: aquamarine;
+
+  #shopSort {
+    height: .8rem;
+    line-height: .8rem;
+    text-align: center;
+    color: black;
     display: flex;
     flex-wrap: wrap;
   }
-  .shop-option{
+  .shop-option {
     flex: 1;
     font-size: 0.35rem;
+    border-bottom: 1px solid #ddd;
   }
-  .mountting{
+  .shop-option_s {
+    color: #3190e8;
+    font-weight: 700;
+  }
+  .mountting {
     position: fixed;
     top: 0;
     width: 10rem;
+    background: white;
   }
-  .nomountting{
+
+  .nomountting {
     position: relative;
+  }
+
+  .sort_card {
+    width: 10rem;
+    position: fixed;
+    top: 31px;
+    bottom: 0rem;
+    background-color: rgba(0, 0, 0, .3);
+  }
+
+  .sort_list {
+    text-align: left;
+    padding: 0 .53rem;
+    background: white;
+  }
+  .sort_list .active{
+    color: #3190e8;
   }
 </style>

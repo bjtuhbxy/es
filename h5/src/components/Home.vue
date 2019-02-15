@@ -18,6 +18,7 @@
           {{item.label}}
         </mt-tab-item>
       </mt-tabbar>
+      </mt-tabbar>
     </div>
   </div>
 </template>
@@ -32,15 +33,15 @@ export default {
   name: 'Home',
   data () {
     return {
-      selected: '外卖',
+      selected: 'wm',
       tabList: [{
-        id:'外卖',
+        id:'wm',
         label:'外卖',
         icon:'diancan',
         page:'wm'
       },
         {
-          id:'订单',
+          id:'order',
           label:'订单',
           icon:'dingdan',
           page:'order'
