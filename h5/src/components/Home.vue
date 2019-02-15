@@ -7,37 +7,17 @@
           <mt-cell class="page-part" title="当前选中" :value="selected" />
         </div>
         <mt-tab-container class="page-tabbar-container" v-model="selected">
-          <mt-tab-container-item id="外卖">
-            <wm></wm>
-          </mt-tab-container-item>
-          <mt-tab-container-item id="订单">
-            <order></order>
-          </mt-tab-container-item>
-          <mt-tab-container-item id="发现">
-            <find></find>
-          </mt-tab-container-item>
-          <mt-tab-container-item id="我的">
-            <my></my>
+          <mt-tab-container-item v-for="item in tabList" :id="item.id">
+            <component :is="item.page"></component>
           </mt-tab-container-item>
         </mt-tab-container>
       </div>
       <mt-tabbar v-model="selected" fixed>
-        <mt-tab-item id="外卖">
-          <span class="iconfont icon-diancan"></span>
-          外卖
+        <mt-tab-item v-for="item in tabList" :id="item.id">
+          <span :class="'iconfont icon-' + item.icon"></span>
+          {{item.label}}
         </mt-tab-item>
-        <mt-tab-item id="订单">
-          <span class="iconfont icon-dingdan"></span>
-          订单
-        </mt-tab-item>
-        <mt-tab-item id="发现">
-          <span class="iconfont icon-faxian"></span>
-          发现
-        </mt-tab-item>
-        <mt-tab-item id="我的">
-          <span class="iconfont icon-wode"></span>
-          我的
-        </mt-tab-item>
+      </mt-tabbar>
       </mt-tabbar>
     </div>
   </div>
@@ -53,7 +33,31 @@ export default {
   name: 'Home',
   data () {
     return {
-      selected: '外卖'
+      selected: 'wm',
+      tabList: [{
+        id:'wm',
+        label:'外卖',
+        icon:'diancan',
+        page:'wm'
+      },
+        {
+          id:'order',
+          label:'订单',
+          icon:'dingdan',
+          page:'order'
+        },
+        {
+          id:'find',
+          label:'发现',
+          icon:'faxian',
+          page:'find'
+        },
+        {
+          id:'my',
+          label:'我的',
+          icon:'wode',
+          page:'my'
+        }]
     }
   },
   mounted () {
