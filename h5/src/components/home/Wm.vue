@@ -24,10 +24,11 @@
     <div id="shopSort" :class="sort?'mountting' : '' " ref="sort">
       <span class="shop-option" @click="zhpx" :class="sortCard ? 'shop-option_s' : ''">
         {{sortValue[0]}}
+        <i class="down"></i>
       </span>
       <span class="shop-option">{{sortValue[1]}}</span>
       <span class="shop-option">{{sortValue[2]}}</span>
-      <span class="shop-option">{{sortValue[3]}}</span>
+      <span class="shop-option icon-shaixuan1">{{sortValue[3]}}</span>
       <div class="sort_card" v-if="sortCard" @click="sortCard = false">
         <ul class="sort_list">
           <li @click="sypx(item)" v-for="item in sortList">
@@ -219,5 +220,19 @@
   }
   .sort_list .active{
     color: #3190e8;
+  }
+  .down{
+    width: 0;
+    height: 0;
+    border:.1rem solid transparent;
+    position: absolute;
+    top:50%;
+    border-top-color:#666;
+    margin-top:-1.1rem;
+    margin-left: 0.05rem;
+  }
+  .icon-shaixuan1 {
+
+
   }
 </style>
