@@ -39,22 +39,14 @@
       </div>
     </div>
     <div>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
+      <seller v-for="item in 10"></seller>
     </div>
     <button @click="toDemo">demo</button>
   </div>
 </template>
 
 <script>
+  import seller from './seller'
   export default {
     name: 'Wm',
     data() {
@@ -102,6 +94,9 @@
           },
         ]
       }
+    },
+    components: {
+      seller,
     },
     methods: {
       toDemo: function () {
@@ -158,8 +153,8 @@
 
   .swiper-main img {
     margin-bottom: 0.1rem;
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   .swiper-title {
@@ -178,16 +173,16 @@
   }
 
   #shopSort {
-    height: .8rem;
-    line-height: .8rem;
     text-align: center;
     color: black;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    z-index: 10000;
   }
   .shop-option {
     flex: 1;
-    font-size: 0.35rem;
+    font-size: 1rem;
     border-bottom: 1px solid #ddd;
   }
   .shop-option_s {
@@ -206,11 +201,12 @@
   }
 
   .sort_card {
-    width: 10rem;
     position: fixed;
     top: 31px;
     bottom: 0rem;
     background-color: rgba(0, 0, 0, .3);
+    width: 100%;
+    line-height: 2rem;
   }
 
   .sort_list {
