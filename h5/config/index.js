@@ -21,6 +21,14 @@ module.exports = {
           '^/api': ''
         }
       },
+      '/elm': {
+        target: 'https://h5.ele.me',
+        changeOrigin: true,
+        emulateJSON: true,
+        pathRewrite: {
+          '^/elm': ''
+        }
+      },
     },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

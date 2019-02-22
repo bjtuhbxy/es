@@ -32,7 +32,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      selected: 'wm',
+      selected: 'find',
       tabList: [{
         id:'wm',
         label:'外卖',
@@ -61,6 +61,11 @@ export default {
   },
   mounted () {
     // Vue.component(Navbar.name, Navbar);
+  },
+  methods: {
+    test:function (s) {
+      this.selected = 'my'
+    }
   },
   components: {
     wm,
