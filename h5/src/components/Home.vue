@@ -3,9 +3,9 @@
 
     <div class="page-tabbar">
       <div class="page-wrap">
-        <div>
+        <!-- <div>
           <mt-cell class="page-part" title="当前选中" :value="selected" />
-        </div>
+        </div> -->
         <mt-tab-container class="page-tabbar-container" v-model="selected">
           <mt-tab-container-item v-for="(item,index) in tabList" :key="index" :id="item.id">
             <component :is="item.page"></component>
@@ -22,22 +22,21 @@
   </div>
 </template>
 <script>
-import wm from './home/Wm'
+import home from './home/Home'
 import order from './home/Order'
 import find from './home/Find'
 import my from './home/My'
-console.log(wm);
 // const Wm = resolve=>require(['@/components/home/Wm.vue'],resolve)
 export default {
   name: 'Home',
   data () {
     return {
-      selected: 'find',
+      selected: 'home',
       tabList: [{
-        id:'wm',
-        label:'外卖',
+        id:'home',
+        label:'商城',
         icon:'diancan',
-        page:'wm'
+        page:'home'
       },
         {
           id:'order',
@@ -68,7 +67,7 @@ export default {
     }
   },
   components: {
-    wm,
+    home,
     order,
     find,
     my

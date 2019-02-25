@@ -7,6 +7,7 @@ import P from './public.js'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 import iconfont from './assets/iconfont/iconfont.css'
+import base from './assets/css/base.css'
 import {
   $axios
 } from "./assets/js/http";
