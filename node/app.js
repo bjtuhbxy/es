@@ -47,6 +47,10 @@ app.use(function(err, req, res, next) {
 //登录接口
 app.post('/login', function(req, res) {
 
+    // 获取前台页面传过来的参数
+    var param = req.query || req.params;
+    var u = req.body.u;
+    var p = req.body.p;
     //解密token
     // jwt.verify(token, secret, function (err, decoded) {
     //     if (!err){
@@ -56,40 +60,59 @@ app.post('/login', function(req, res) {
 
     // 从连接池获取连接
     pool.getConnection(function(err, connection) {
-        // 获取前台页面传过来的参数
-        var param = req.query || req.params;
         // 建立连接 增加一个用户信息
-        connection.query(sql.getUserById, [req.body.uname], function(err, result) {
-            if (err) throw err
+        connection.query(sql.getUserById, [u], function(err, result) {
+            if (err) {
+              res.json({
+                  msg:'用户不存在',
+                  status:'2001',
+                  data:{
+                    // u:u
+                  }
+              })
+              console.log('');
+              throw err
+            }
             console.log(result);
             var result = JSON.stringify(result);
             var result = JSON.parse(result);
             if (result.length > 0) {
+              console.log(result);
+              console.log(p);
+              console.log(result[0].password);
+              if (p == result[0].password) {
                 //生成token
                 const token = jwt.sign({
-                    name: req.body.uname
+                    name: u
                 }, secret, {
                     expiresIn: 60 //秒到期时间
                 });
                 res.json({
-                    token: token,
-                    param: req.body,
-                    result: result
+                    msg:'登录成功',
+                    status:'2000',
+                    data:{
+                      u:u,
+                      token:token,
+                    }
                 })
+              }else {
+                res.json({
+                    msg:'密码错误',
+                    status:'2001',
+                    data:{
+                      u:u
+                    }
+                })
+              }
             } else {
                 res.json({
-                    error: '登录失败'
+                    msg:'用户不存在',
+                    status:'2001',
+                    data:{
+                      // u:u
+                    }
                 })
             }
-            // if (result) {
-            //     result = {
-            //         code: 200,
-            //         msg: '增加成功'
-            //     };
-            // }
-            // 以json形式，把操作结果返回给前台页面
-            // responseJSON(res, result);
-            // // 释放连接
             connection.release();
 
         });
