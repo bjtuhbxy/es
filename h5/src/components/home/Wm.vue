@@ -3,7 +3,7 @@
     <mt-swipe :auto="0">
       <mt-swipe-item>
         <ul class="swiper-slide">
-          <li class="swiper-main" v-for="item in foodTypes">
+          <li class="swiper-main" v-for="(item,index) in foodTypes" :key="index">
             <img
               :src="item.img">
             <div class="swiper-title">{{item.title}}</div>
@@ -12,7 +12,7 @@
       </mt-swipe-item>
       <mt-swipe-item>
         <ul class="swiper-slide">
-          <li class="swiper-main" v-for="item in foodTypes">
+          <li class="swiper-main" v-for="(item,index) in foodTypes" :key="index">
             <img
               :src="item.img">
             <div class="swiper-title">{{item.title}}</div>
@@ -31,7 +31,7 @@
       <span class="shop-option icon-shaixuan1">{{sortValue[3]}}</span>
       <div class="sort_card" v-if="sortCard" @click="sortCard = false">
         <ul class="sort_list">
-          <li @click="sypx(item)" v-for="item in sortList">
+          <li @click="sypx(item)" v-for="(item,index) in sortList" :key="index">
             <span v-if="item == sortValue[0]" class="active">{{item}}</span>
             <span v-else>{{item}}</span>
           </li>
@@ -39,7 +39,7 @@
       </div>
     </div>
     <div>
-      <seller v-for="item in 10"></seller>
+      <seller v-for="(item,index) in 10" :key="index"></seller>
     </div>
     <button @click="toDemo">demo</button>
   </div>
