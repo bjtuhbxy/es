@@ -7,13 +7,12 @@ import P from './public.js'
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 import iconfont from './assets/iconfont/iconfont.css'
-import {
-  $axios
-} from "./assets/js/http";
+import {$axios} from "./assets/js/http";
 
 Vue.use(Mint);
 Vue.config.productionTip = false
 Vue.prototype.$http = $axios
+// Vue.prototype.$cookies = cookies
   /* eslint-disable no-new */
   new Vue({
     el: '#app',

@@ -51,8 +51,17 @@
       //   })
       // }
       login: function () {
-        this.$http.get('/elm/restapi/shopping/v3/restaurants?latitude=39.85394&longitude=116.41465&keyword=&offset=8&limit=8&extras[]=activities&extras[]=tags&terminal=h5&rank_id=860b4c205b84444ab3cd86b6c70142ca&brand_ids[]=&restaurant_category_ids[]=209&restaurant_category_ids[]=212&restaurant_category_ids[]=213&restaurant_category_ids[]=214&restaurant_category_ids[]=215&restaurant_category_ids[]=216&restaurant_category_ids[]=217&restaurant_category_ids[]=219&restaurant_category_ids[]=265&restaurant_category_ids[]=266&restaurant_category_ids[]=267&restaurant_category_ids[]=268&restaurant_category_ids[]=269&restaurant_category_ids[]=221&restaurant_category_ids[]=222&restaurant_category_ids[]=223&restaurant_category_ids[]=224&restaurant_category_ids[]=225&restaurant_category_ids[]=226&restaurant_category_ids[]=227&restaurant_category_ids[]=228&restaurant_category_ids[]=231&restaurant_category_ids[]=232&restaurant_category_ids[]=263&restaurant_category_ids[]=218&restaurant_category_ids[]=234&restaurant_category_ids[]=236&restaurant_category_ids[]=237&restaurant_category_ids[]=238&restaurant_category_ids[]=211&restaurant_category_ids[]=229&restaurant_category_ids[]=230&restaurant_category_ids[]=264').then((response)=>{
-
+        this.$http.get('/static/data/login.json').then((response)=>{
+          console.log(response);
+          let data = response.data
+          this.$cookies.set("token", data.data.token)
+          let t = this.$cookies.get("token")
+          if (t) {
+            this.$router.push({//你需要接受路由的参数再跳转
+              path: '/'
+            });
+          }
+          console.log(t);
         }).catch((response)=>{
           console.log(response);
         })
