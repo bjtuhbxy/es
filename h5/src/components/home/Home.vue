@@ -14,16 +14,19 @@
         </li>
       </ul>
     </div>
-    <button type="button" @click="init" name="button">加载</button>
     <!-- 商品列表 -->
     <ul class="goods_list">
       <li v-for="(item,index) in goods_list" :key="index">
-        <img :src="item.src" alt="">
-        <div>{{item.title}}</div>
-        <p>
-          <span>¥{{item.price}}</span>
-          <span>{{item.num}}人付款</span>
-        </p>
+        <a href="#">
+          <div class="">
+            <img :src="item.src" alt="">
+            <p>{{item.title}}</p>
+            <p>
+              <span>¥ <big>{{item.price}}</big></span>
+              <span>{{item.num}}人付款</span>
+            </p>
+          </div>
+        </a>
       </li>
     </ul>
   </div>
@@ -107,7 +110,7 @@
         this.goods_list = [
           {
             url: 'http://iryoss2.oss-cn-beijing.aliyuncs.com/goods/xyy/m.jpg',
-            title: '乔致经典留香洗衣液',
+            title: '乔致经典留香洗衣液乔致经典留香洗衣液乔致经典留香洗衣液',
             price: '29.8',
             num: '26'
           },
@@ -149,7 +152,6 @@
   .swiper {
     height: 5rem;
   }
-
   .goods_class {
     width: 100%;
     min-height: 2.9rem;
@@ -184,15 +186,50 @@
 
   .goods_list {
     width: 10rem;
+    margin-top: 0.2rem;
   }
 
   .goods_list > li {
     width: 4.8rem;
-    height: 5rem;
+    margin: 0.05rem;
+    height: 6.4rem;
     display: inline-block;
+    background-color: #fff;
   }
 
-  .goods_list > li > img {
+  .goods_list > li img {
     width: 100%;
   }
+  .goods_list > li p:nth-of-type(1){
+    height: 1.1875rem;
+    margin: 0 0.2rem;
+    text-align: left;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .goods_list > li p:nth-of-type(2){
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+   .goods_list > li p:nth-of-type(2) span:nth-of-type(1){
+     margin: 0 0.2rem;
+     color: #f23030;
+   }
+   .goods_list > li p:nth-of-type(2) span:nth-of-type(2){
+     margin: 0 0.2rem;
+   }
+   .goods_list > li p:nth-of-type(2) span:nth-of-type(1) big{
+     font-size: 0.5rem;
+   }
 </style>
