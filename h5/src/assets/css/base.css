@@ -31,3 +31,9 @@ a {
   text-align: center;
   color: white;
 }
+.page-navbar>button{
+  position: absolute;
+  left:0;
+  line-height: 44px;
+  color: var(--white);
+}

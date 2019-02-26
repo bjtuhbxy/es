@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <navbar :title="title" :hideLeft="true"></navbar>
+    <navbar :title="title" :hideBack="true"></navbar>
     <br/>
     <router-link to="/login">
       <mt-button type="danger" size="large">退出</mt-button>

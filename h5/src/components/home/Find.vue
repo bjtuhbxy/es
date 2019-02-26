@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <navbar :title="title" :hideLeft="true"></navbar>
+    <navbar :title="title" :hideBack="true"></navbar>
     <span v-html="food" @click="test"></span>
   </div>
 </template>

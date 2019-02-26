@@ -1,5 +1,5 @@
 <template>
-  <navbar :title="title" :hideLeft="true"></navbar>
+  <navbar :title="title" :hideBack="true"></navbar>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <div class="page-navbar">
-    <span @click="$router.go(-1)" v-if="!hideLeft">返回</span>
-    <div class="page-title">{{title}}</div>
+    <button class="iconfont icon-htmal5icon37" @click="$router.go(-1)" v-if="!hideBack">返回</button>
+    <div class="page-title" :title="title">{{title}}</div>
   </div>
 </template>
 
@@ -10,15 +10,14 @@
     name: 'Nav',
     data () {
       return {
+
       }
     },
-    props:['title','hideLeft'],
-    methods:{
-
-    }
+    props:['title','hideBack']
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>
