@@ -1,8 +1,0 @@
-{
-  "msg":"登录成功",
-  "status":2000,
-  "data":{
-    "name":"admin",
-    "token":"gtrbhtuyjrtuhuj"
-  }
-}
