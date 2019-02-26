@@ -10,8 +10,26 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    // host: 'localhost', // can be overwritten by process.env.HOST
+    // port: 8081,
+    proxyTable: {
+      '/api': {
+        target: 'http://192.168.2.100:3000',
+        changeOrigin: true,
+        emulateJSON: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+      '/elm': {
+        target: 'https://h5.ele.me',
+        changeOrigin: true,
+        emulateJSON: true,
+        pathRewrite: {
+          '^/elm': ''
+        }
+      },
+    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
@@ -20,7 +38,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */

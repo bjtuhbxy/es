@@ -7,17 +7,16 @@
           <mt-cell class="page-part" title="当前选中" :value="selected" />
         </div>
         <mt-tab-container class="page-tabbar-container" v-model="selected">
-          <mt-tab-container-item v-for="item in tabList" :id="item.id">
+          <mt-tab-container-item v-for="(item,index) in tabList" :key="index" :id="item.id">
             <component :is="item.page"></component>
           </mt-tab-container-item>
         </mt-tab-container>
       </div>
       <mt-tabbar v-model="selected" fixed>
-        <mt-tab-item v-for="item in tabList" :id="item.id">
+        <mt-tab-item v-for="(item,index) in tabList" :key="index" :id="item.id">
           <span :class="'iconfont icon-' + item.icon"></span>
           {{item.label}}
         </mt-tab-item>
-      </mt-tabbar>
       </mt-tabbar>
     </div>
   </div>
@@ -33,7 +32,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      selected: 'wm',
+      selected: 'find',
       tabList: [{
         id:'wm',
         label:'外卖',
@@ -62,6 +61,11 @@ export default {
   },
   mounted () {
     // Vue.component(Navbar.name, Navbar);
+  },
+  methods: {
+    test:function (s) {
+      this.selected = 'my'
+    }
   },
   components: {
     wm,

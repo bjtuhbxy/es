@@ -3,7 +3,7 @@
     <mt-swipe :auto="0">
       <mt-swipe-item>
         <ul class="swiper-slide">
-          <li class="swiper-main" v-for="item in foodTypes">
+          <li class="swiper-main" v-for="(item,index) in foodTypes" :key="index">
             <img
               :src="item.img">
             <div class="swiper-title">{{item.title}}</div>
@@ -12,7 +12,7 @@
       </mt-swipe-item>
       <mt-swipe-item>
         <ul class="swiper-slide">
-          <li class="swiper-main" v-for="item in foodTypes">
+          <li class="swiper-main" v-for="(item,index) in foodTypes" :key="index">
             <img
               :src="item.img">
             <div class="swiper-title">{{item.title}}</div>
@@ -24,13 +24,14 @@
     <div id="shopSort" :class="sort?'mountting' : '' " ref="sort">
       <span class="shop-option" @click="zhpx" :class="sortCard ? 'shop-option_s' : ''">
         {{sortValue[0]}}
+        <i class="down"></i>
       </span>
       <span class="shop-option">{{sortValue[1]}}</span>
       <span class="shop-option">{{sortValue[2]}}</span>
-      <span class="shop-option">{{sortValue[3]}}</span>
+      <span class="shop-option icon-shaixuan1">{{sortValue[3]}}</span>
       <div class="sort_card" v-if="sortCard" @click="sortCard = false">
         <ul class="sort_list">
-          <li @click="sypx(item)" v-for="item in sortList">
+          <li @click="sypx(item)" v-for="(item,index) in sortList" :key="index">
             <span v-if="item == sortValue[0]" class="active">{{item}}</span>
             <span v-else>{{item}}</span>
           </li>
@@ -38,22 +39,14 @@
       </div>
     </div>
     <div>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
-      123<br/>
+      <seller v-for="(item,index) in 10" :key="index"></seller>
     </div>
     <button @click="toDemo">demo</button>
   </div>
 </template>
 
 <script>
+  import seller from './seller'
   export default {
     name: 'Wm',
     data() {
@@ -101,6 +94,9 @@
           },
         ]
       }
+    },
+    components: {
+      seller,
     },
     methods: {
       toDemo: function () {
@@ -157,8 +153,8 @@
 
   .swiper-main img {
     margin-bottom: 0.1rem;
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   .swiper-title {
@@ -177,16 +173,16 @@
   }
 
   #shopSort {
-    height: .8rem;
-    line-height: .8rem;
     text-align: center;
     color: black;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    z-index: 10000;
   }
   .shop-option {
     flex: 1;
-    font-size: 0.35rem;
+    font-size: 1rem;
     border-bottom: 1px solid #ddd;
   }
   .shop-option_s {
@@ -205,11 +201,12 @@
   }
 
   .sort_card {
-    width: 10rem;
     position: fixed;
     top: 31px;
     bottom: 0rem;
     background-color: rgba(0, 0, 0, .3);
+    width: 100%;
+    line-height: 2rem;
   }
 
   .sort_list {
@@ -219,5 +216,19 @@
   }
   .sort_list .active{
     color: #3190e8;
+  }
+  .down{
+    width: 0;
+    height: 0;
+    border:.1rem solid transparent;
+    position: absolute;
+    top:50%;
+    border-top-color:#666;
+    margin-top:-1.1rem;
+    margin-left: 0.05rem;
+  }
+  .icon-shaixuan1 {
+
+
   }
 </style>
