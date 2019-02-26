@@ -1,10 +1,12 @@
 <template>
   <div class="">
+    <navbar :title="title" :hideLeft="true"></navbar>
     <span v-html="food" @click="test"></span>
   </div>
 </template>
 
 <script>
+  import navbar from './Nav'
 export default {
   name: 'Find',
   data () {
@@ -13,8 +15,12 @@ export default {
       food: '你想吃啥，点我开始吧',
       foodList: [
         '南城香', '老家肉饼','沙县小吃','肯德基','麦当劳'
-      ]
+      ],
+      title:'发现',
     }
+  },
+  components:{
+    navbar,
   },
   methods: {
     test:function () {

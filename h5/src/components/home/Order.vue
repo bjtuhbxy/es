@@ -1,7 +1,5 @@
 <template>
-  <div class="page-navbar">
-    <div class="page-title">订单</div>
-  </div>
+  <navbar :title="title" :hideLeft="true"></navbar>
 </template>
 
 <script>
@@ -11,6 +9,7 @@
     data () {
       return {
         selected:1,
+        title:'订单',
       }
     },
     components:{

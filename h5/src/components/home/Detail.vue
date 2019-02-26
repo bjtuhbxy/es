@@ -1,24 +1,25 @@
 <template>
-  <div class="page-navbar">
-    <span @click="$router.go(-1)" v-if="!hideLeft">返回</span>
-    <div class="page-title">{{title}}</div>
-  </div>
+  <navbar :title="title"></navbar>
 </template>
 
 <script>
+  import navbar from './Nav'
   export default {
-    name: 'Nav',
+    name: 'Detail',
     data () {
       return {
+        title:'商品详情',
       }
     },
-    props:['title','hideLeft'],
+    components:{
+       navbar,
+    },
     methods:{
-
-    }
+    },
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>

@@ -17,7 +17,7 @@
     <!-- 商品列表 -->
     <ul class="goods_list">
       <li v-for="(item,index) in goods_list" :key="index">
-        <a href="#">
+        <router-link :to="{ path: '/detail'}">
           <div class="">
             <img :src="item.src" alt="">
             <p>{{item.title}}</p>
@@ -26,7 +26,7 @@
               <span>{{item.num}}人付款</span>
             </p>
           </div>
-        </a>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -43,7 +43,8 @@
         goods_list: [],
       }
     },
-    components: {},
+    components: {
+    },
     mounted() {
       this.init()
 
