@@ -166,15 +166,16 @@
 
   .goods_class > ul > li {
     width: 2rem;
-    height: 2.5rem;
+    height: 2rem;
     margin: 0.2rem;
     text-align: center;
   }
 
   .goods_class > ul > li > img {
-    width: 2rem;
-    height: 2rem;
+    width: 1.2rem;
+    height: 1.2rem;
     display: block;
+    margin: 0.15rem auto;
   }
 
   .goods_class > ul > li > span {
