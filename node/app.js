@@ -18,6 +18,8 @@ var indexRouter = require('./routes/index');
 var demoRouter = require('./routes/demo');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var templateRouter = require('./routes/template');
+var aiRouter = require('./routes/ai');
 // 创建数据库连接池
 const db = require('./bin/db');
 const sql = require('./bin/sql');
@@ -29,11 +31,11 @@ const expressJwt = require('express-jwt');
 //定义签名
 const secret = 'salt';
 //使用中间件验证token合法性
-app.use(expressJwt({
-    secret: secret
-}).unless({
-    path: ['/login'] //除了这些地址，其他的URL都需要验证
-}));
+// app.use(expressJwt({
+//     secret: secret
+// }).unless({
+//     path: ['/login'] //除了这些地址，其他的URL都需要验证
+// }));
 //拦截器
 app.use(function(err, req, res, next) {
     //当token验证失败时会抛出如下错误
@@ -136,6 +138,8 @@ app.use('/', demoRouter);
 app.use('/users', usersRouter);
 // 登录
 app.use('/login', loginRouter);
+app.use('/t', templateRouter);
+app.use('/ai', aiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
