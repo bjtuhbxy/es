@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var fs = require("fs")
+var join = require('path').join;
 
 var app = express();
 
@@ -20,8 +22,6 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var templateRouter = require('./routes/template');
 var aiRouter = require('./routes/ai');
-// AI部分
-var initDBRouter = require('./routes/ai/initDB');
 // 创建数据库连接池
 const db = require('./bin/db');
 const sql = require('./bin/sql');
@@ -141,7 +141,29 @@ app.use('/users', usersRouter);
 // 登录
 app.use('/login', loginRouter);
 app.use('/t', templateRouter);
-app.use('/initdb', initDBRouter);
+
+// AI部分
+
+// var initDBRouter = require('./routes/ai/initDB');
+// app.use('/initdb', initDBRouter);
+function findJsonFile(path){
+    let files = fs.readdirSync(path);
+    files.forEach(function (item, index) {
+        let fPath = join(path,item);
+        let stat = fs.statSync(fPath);
+        if(stat.isDirectory() === true) {
+            findJsonFile(fPath);
+        }
+        if (stat.isFile() === true) {
+          let file = fPath.split('/').pop().split('.').shift();
+          let route = require('./routes/ai/'+file);
+          let interface = '/'+file.toLowerCase();
+          app.use(interface, route);
+        }
+    });
+    // return fileList;
+}
+findJsonFile('./routes/ai');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
