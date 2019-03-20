@@ -20,6 +20,8 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var templateRouter = require('./routes/template');
 var aiRouter = require('./routes/ai');
+// AI部分
+var initDBRouter = require('./routes/ai/initDB');
 // 创建数据库连接池
 const db = require('./bin/db');
 const sql = require('./bin/sql');
@@ -139,7 +141,7 @@ app.use('/users', usersRouter);
 // 登录
 app.use('/login', loginRouter);
 app.use('/t', templateRouter);
-app.use('/ai', aiRouter);
+app.use('/initdb', initDBRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
