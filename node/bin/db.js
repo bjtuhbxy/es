@@ -4,7 +4,7 @@ module.exports =
     host     : 'localhost',
     user     : 'root',
     password : 'root',
-    database : 'app',
+    database : 'yd',
     port: 3306
   }
 };
