@@ -20,7 +20,7 @@ var indexRouter = require('./routes/index');
 var demoRouter = require('./routes/demo');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
-var templateRouter = require('./routes/template');
+// var templateRouter = require('./routes/template');
 var aiRouter = require('./routes/ai');
 // 创建数据库连接池
 const db = require('./bin/db');
@@ -140,7 +140,7 @@ app.use('/', demoRouter);
 app.use('/users', usersRouter);
 // 登录
 app.use('/login', loginRouter);
-app.use('/t', templateRouter);
+// app.use('/t', templateRouter);
 
 // AI部分
 

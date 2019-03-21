@@ -81,3 +81,5 @@ var tpl = function () {
   });
   module.exports = router;
 }
+
+tpl();
