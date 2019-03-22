@@ -1,4 +1,4 @@
-var tpl = function () {
+var tpl = function (o) {
   var express = require('express');
   var router = express.Router();
   var mysql = require('mysql');
