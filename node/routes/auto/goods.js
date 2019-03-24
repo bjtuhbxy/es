@@ -80,3 +80,5 @@ var tpl = function(o) {
     });
     module.exports = router;
 }
+
+tpl({"name":"goods","keys":["name","price","title","common"]});

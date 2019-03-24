@@ -29,13 +29,15 @@ router.get('/', function(req, res, next) {
                                 if (err) throw err;
                                 var rows = JSON.stringify(rows);
                                 var rows = JSON.parse(rows);
-                                var key = [];
+                                var keys = [];
                                 for (var item2 in rows) {
-                                    console.log(rows[item2].COLUMN_NAME);
-                                    key.push(rows[item2].COLUMN_NAME);
+                                    if (rows[item2].COLUMN_NAME !== 'id') {
+                                        keys.push(rows[item2].COLUMN_NAME);
+                                    }
                                 }
                                 dbObj.push({
-                                    [table]: key
+                                    name: table,
+                                    keys: keys
                                 });
                                 getKeyWord(i + 1, n);
                             });
@@ -51,7 +53,8 @@ router.get('/', function(req, res, next) {
         // 同步读取
         var data = fs.readFileSync('./routes/template.js');
         for (var i = 0; i < dbObj.length; i++) {
-            fs.writeFileSync('./routes/auto/tmp' + i + '.js', data + '\ntpl();', function(err) {
+            var o = JSON.stringify(dbObj[i]);
+            fs.writeFileSync('./routes/auto/' + dbObj[i].name + '.js', data + '\ntpl(' + o + ');', function(err) {
                 if (err) {
                     return console.error(err);
                 }

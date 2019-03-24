@@ -44,8 +44,8 @@ app.use(function(err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
         //这个需要根据自己的业务逻辑来处理（ 具体的err值 请看下面）
         res.status(401).send('invalid token...');
-    }else {
-      console.log('=============');
+    } else {
+        console.log('=============');
     }
 });
 //登录接口
@@ -67,53 +67,53 @@ app.post('/login', function(req, res) {
         // 建立连接 增加一个用户信息
         connection.query(sql.getUserById, [u], function(err, result) {
             if (err) {
-              res.json({
-                  msg:'用户不存在',
-                  status:'2001',
-                  data:{
-                    // u:u
-                  }
-              })
-              console.log('');
-              throw err
+                res.json({
+                    msg: '用户不存在',
+                    status: '2001',
+                    data: {
+                        // u:u
+                    }
+                })
+                console.log('');
+                throw err
             }
             console.log(result);
             var result = JSON.stringify(result);
             var result = JSON.parse(result);
             if (result.length > 0) {
-              console.log(result);
-              console.log(p);
-              console.log(result[0].password);
-              if (p == result[0].password) {
-                //生成token
-                const token = jwt.sign({
-                    name: u
-                }, secret, {
-                    expiresIn: 60 //秒到期时间
-                });
-                res.json({
-                    msg:'登录成功',
-                    status:'2000',
-                    data:{
-                      u:u,
-                      token:token,
-                    }
-                })
-              }else {
-                res.json({
-                    msg:'密码错误',
-                    status:'2001',
-                    data:{
-                      u:u
-                    }
-                })
-              }
+                console.log(result);
+                console.log(p);
+                console.log(result[0].password);
+                if (p == result[0].password) {
+                    //生成token
+                    const token = jwt.sign({
+                        name: u
+                    }, secret, {
+                        expiresIn: 60 //秒到期时间
+                    });
+                    res.json({
+                        msg: '登录成功',
+                        status: '2000',
+                        data: {
+                            u: u,
+                            token: token,
+                        }
+                    })
+                } else {
+                    res.json({
+                        msg: '密码错误',
+                        status: '2001',
+                        data: {
+                            u: u
+                        }
+                    })
+                }
             } else {
                 res.json({
-                    msg:'用户不存在',
-                    status:'2001',
-                    data:{
-                      // u:u
+                    msg: '用户不存在',
+                    status: '2001',
+                    data: {
+                        // u:u
                     }
                 })
             }
@@ -146,24 +146,25 @@ app.use('/login', loginRouter);
 
 // var initDBRouter = require('./routes/ai/initDB');
 // app.use('/initdb', initDBRouter);
-function findJsonFile(path){
+function findJsonFile(path) {
     let files = fs.readdirSync(path);
-    files.forEach(function (item, index) {
-        let fPath = join(path,item);
+    files.forEach(function(item, index) {
+        let fPath = join(path, item);
         let stat = fs.statSync(fPath);
-        if(stat.isDirectory() === true) {
+        if (stat.isDirectory() === true) {
             findJsonFile(fPath);
         }
         if (stat.isFile() === true) {
-          let file = fPath.split('/').pop().split('.').shift();
-          let route = require('./routes/ai/'+file);
-          let interface = '/'+file.toLowerCase();
-          app.use(interface, route);
+            let file = fPath.split('/').pop().split('.').shift();
+            let route = require(path + '/' + file);
+            let interface = '/' + file.toLowerCase();
+            app.use(interface, route);
         }
     });
     // return fileList;
 }
 findJsonFile('./routes/ai');
+findJsonFile('./routes/auto');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

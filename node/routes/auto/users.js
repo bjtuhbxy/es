@@ -80,3 +80,5 @@ var tpl = function(o) {
     });
     module.exports = router;
 }
+
+tpl({"name":"users","keys":["name","age","sex","tel"]});
