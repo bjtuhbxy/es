@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    123456789
+    <el-row :gutter="20">
+      <el-col :span="18" :offset="3">
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -9,7 +12,6 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
     }
   },
   methods: {
@@ -22,4 +24,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.bg-purple{
+  background-color: red;
+}
 </style>
