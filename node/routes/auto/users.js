@@ -21,8 +21,18 @@ var tpl = function(o) {
         });
     });
     // 插入数据接口
-    router.get('/post', function(req, res, next) {
-        var sql = 'INSERT INTO ' + table + ' (' + keyword.join(',') + ') VALUES ("user", "18", "男", "18812341234");';
+    router.post('/post', function(req, res, next) {
+        var body=[];
+        for (var i = 0; i < keyword.length; i++) {
+            if (req.body[keyword[i]]) {
+                body.push(req.body[keyword[i]]);
+            }else {
+                body.push('');
+            }
+        }
+        var v = JSON.stringify(body).replace(/\[/,'').replace(/\]/,'');
+        // var sql = 'INSERT INTO ' + table + ' (' + keyword.join(',') + ') VALUES ("user", "18", "男", "18812341234");';
+        var sql = 'INSERT INTO ' + table + ' (' + keyword.join(',') + ') VALUES ('+v+');';
         // 从连接池获取连接
         pool.getConnection(function(err, connection) {
             connection.query(sql, function(err, rows, fields) {
@@ -35,8 +45,16 @@ var tpl = function(o) {
         });
     });
     // 修改数据接口
-    router.get('/put', function(req, res, next) {
-        var sql = 'DELETE FROM ' + table + ' WHERE id=' + param.id + ';';
+    router.post('/put', function(req, res, next) {
+        var body=[];
+        for (var i = 0; i < keyword.length; i++) {
+            if (req.body[keyword[i]]) {
+                body.push(keyword[i]+'="'+req.body[keyword[i]]+'"');
+            }else {
+            }
+        }
+        var v = body.join(',');
+        var sql = 'UPDATE ' + table + ' SET '+ v +' WHERE id=' + req.body.id + ';';
         // // 从连接池获取连接
         pool.getConnection(function(err, connection) {
             connection.query(sql, function(err, rows, fields) {
@@ -53,19 +71,6 @@ var tpl = function(o) {
         var param = req.query || req.params;
         var id = param.id;
         var sql = 'DELETE FROM ' + table + ' WHERE id=' + param.id + ';';
-        // if (id.indexOf('[') > -1) {
-        //   id = JSON.parse(id);
-        //     for (var i = 0; i < id.length; i++) {
-        //         if (i != 0) {
-        //             sql += '||id=' + id[i];
-        //         } else {
-        //             sql += 'id=' + id[i];
-        //         }
-        //     }
-        //     sql += ';';
-        // } else {
-        //     sql += 'id=' + param.id + ';';
-        // }
         console.log(sql);
         // 从连接池获取连接
         pool.getConnection(function(err, connection) {

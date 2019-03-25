@@ -11,7 +11,6 @@ var tpl = function () {
       var sql = 'SELECT * FROM '+table+';';
       // 从连接池获取连接
       pool.getConnection(function(err, connection) {
-          console.log(connection);
           connection.query(sql, function(err, rows, fields) {
               if (err) throw err;
               var rows = JSON.stringify(rows);

@@ -49,79 +49,75 @@ app.use(function(err, req, res, next) {
     }
 });
 //登录接口
-app.post('/login', function(req, res) {
-
-    // 获取前台页面传过来的参数
-    var param = req.query || req.params;
-    var u = req.body.u;
-    var p = req.body.p;
-    //解密token
-    // jwt.verify(token, secret, function (err, decoded) {
-    //     if (!err){
-    //           console.log(decoded.name);  //会输出123，如果过了60秒，则有错误。
-    //      }
-    // })
-
-    // 从连接池获取连接
-    pool.getConnection(function(err, connection) {
-        // 建立连接 增加一个用户信息
-        connection.query(sql.getUserById, [u], function(err, result) {
-            if (err) {
-                res.json({
-                    msg: '用户不存在',
-                    status: '2001',
-                    data: {
-                        // u:u
-                    }
-                })
-                console.log('');
-                throw err
-            }
-            console.log(result);
-            var result = JSON.stringify(result);
-            var result = JSON.parse(result);
-            if (result.length > 0) {
-                console.log(result);
-                console.log(p);
-                console.log(result[0].password);
-                if (p == result[0].password) {
-                    //生成token
-                    const token = jwt.sign({
-                        name: u
-                    }, secret, {
-                        expiresIn: 60 //秒到期时间
-                    });
-                    res.json({
-                        msg: '登录成功',
-                        status: '2000',
-                        data: {
-                            u: u,
-                            token: token,
-                        }
-                    })
-                } else {
-                    res.json({
-                        msg: '密码错误',
-                        status: '2001',
-                        data: {
-                            u: u
-                        }
-                    })
-                }
-            } else {
-                res.json({
-                    msg: '用户不存在',
-                    status: '2001',
-                    data: {
-                        // u:u
-                    }
-                })
-            }
-            connection.release();
-
-        });
-    });
-})
+// app.post('/login', function(req, res) {
+//
+//     // 获取前台页面传过来的参数
+//     var param = req.query || req.params;
+//     var u = req.body.u;
+//     var p = req.body.p;
+//     //解密token
+//     // jwt.verify(token, secret, function (err, decoded) {
+//     //     if (!err){
+//     //           console.log(decoded.name);  //会输出123，如果过了60秒，则有错误。
+//     //      }
+//     // })
+//
+//     // 从连接池获取连接
+//     pool.getConnection(function(err, connection) {
+//         // 建立连接 增加一个用户信息
+//         connection.query(sql.getUserById, [u], function(err, result) {
+//             if (err) {
+//                 res.json({
+//                     msg: '用户不存在',
+//                     status: '2001',
+//                     data: {
+//                         // u:u
+//                     }
+//                 })
+//                 console.log('');
+//                 throw err
+//             }
+//             var result = JSON.stringify(result);
+//             var result = JSON.parse(result);
+//             if (result.length > 0) {
+//                 if (p == result[0].password) {
+//                     //生成token
+//                     const token = jwt.sign({
+//                         name: u
+//                     }, secret, {
+//                         expiresIn: 60 //秒到期时间
+//                     });
+//                     res.json({
+//                         msg: '登录成功',
+//                         status: '2000',
+//                         data: {
+//                             u: u,
+//                             token: token,
+//                         }
+//                     })
+//                 } else {
+//                     res.json({
+//                         msg: '密码错误',
+//                         status: '2001',
+//                         data: {
+//                             u: u
+//                         }
+//                     })
+//                 }
+//             } else {
+//                 res.json({
+//                     msg: '用户不存在',
+//                     status: '2001',
+//                     data: {
+//                         // u:u
+//                     }
+//                 })
+//             }
+//             connection.release();
+//
+//         });
+//     });
+// })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -137,7 +133,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 路由分发
 app.use('/index', indexRouter);
 app.use('/', demoRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 // 登录
 app.use('/login', loginRouter);
 // app.use('/t', templateRouter);
