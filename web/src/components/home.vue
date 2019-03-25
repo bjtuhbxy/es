@@ -3,11 +3,7 @@
     <el-row>
       <el-col :span="18" :offset="3">
         <el-col :span="6">
-          <ul>
-            <li v-for="item in ul">
-              {{item.api}}
-            </li>
-          </ul>
+          <homeLeft></homeLeft>
         </el-col>
         <el-col :span="18">
           <el-col :span="24" class="left">
@@ -23,24 +19,22 @@
 </template>
 
 <script>
+// import left from '@components/homeLeft'
+
+import homeLeft from '@/components/homeLeft'
 export default {
   name: 'home',
   data () {
     return {
-      ul:[
-        {
-          api:'users'
-        },
-        {
-          api:'goods'
-        }
-      ]
     }
   },
   methods: {
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
     }
+  },
+  components: {
+    homeLeft
   }
 }
 </script>
