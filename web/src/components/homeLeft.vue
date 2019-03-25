@@ -3,7 +3,7 @@
     <ul>
       <li>接口列表</li>
       <li v-for="(item,index) in ul" :key="index">
-        {{item.api}}
+        {{index + 1}}-{{item}}
       </li>
     </ul>
   </div>
@@ -14,14 +14,21 @@ export default {
   name: 'homeLeft',
   data () {
     return {
-      ul: [
-        {
-          api: 'users'
-        },
-        {
-          api: 'goods'
-        }
-      ]
+      ul: []
+    }
+  },
+  mounted () {
+    this.test()
+  },
+  methods: {
+    test: function () {
+      let url = '/api/home/getList'
+      var vm = this
+      this.$http.get(url).then(function (res) {
+        vm.ul = res.data
+      }).catch(function (err) {
+        console.log(err)
+      })
     }
   }
 }
