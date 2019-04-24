@@ -6,17 +6,19 @@ import Demo from '@/components/Demo'
 
 Vue.use(Router)
 
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/demo',
+    name: 'Demo',
+    component: Demo
+  }
+]
+
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/demo',
-      name: 'Demo',
-      component: Demo
-    }
-  ]
+  routes: routes
 })
