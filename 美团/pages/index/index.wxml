@@ -1,0 +1,42 @@
+<view class="container">
+  <view class='menu'>
+    <block wx:for="{{menu}}" wx:key="*this">
+      <view class='menu-item'>
+        <view class='menu-icon-bg' style='background-color: {{item.color}};'></view>
+        <label>{{item.label}}</label>
+      </view>
+    </block>
+  </view>
+  <swiper
+    class='swiper'
+    indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}"
+    interval="{{interval}}"
+    duration="{{duration}}"
+  >
+    <block wx:for="{{imgUrls}}" wx:key="*this">
+      <swiper-item>
+        <image class='swiper-img' src="{{item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='hotal' wx:for="{{hotal}}" wx:key="*this">
+    <view class='hotal-left'>
+      <label class='name'>{{item.name}}</label>
+      <view class='info'>
+        <label class='num'>{{item.num}}分</label> | <label class='address'>{{item.address}}</label>
+      </view>
+      <view class='hotal-price'>
+        <label class='char'>¥</label><label class='price'>{{item.price}}</label><label class='start'> 起</label>
+      </view>
+      <view class='hotal-tag'>
+        <block wx:for="{{item.tag}}" wx:key="*this">
+          <label class='tag'>{{item}}</label>
+        </block>
+      </view>
+    </view>
+    <view class='hotal-right'>
+      <image class='hotal-img' src="https://p1.meituan.net/216.0/tdchotel/9488361fa7998bf7945b102b298e0ca1120408.jpg"></image>
+    </view>
+  </view>
+</view>

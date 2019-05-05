@@ -1,0 +1,96 @@
+/**index.wxss**/
+/* 菜单 */
+.menu {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-top: 1px solid beige;
+  border-bottom: 1px solid beige;
+  background-color: white;
+}
+.menu-item {
+  width: 18%;
+  height: 60px;
+  text-align: center;
+}
+.menu-icon-bg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.menu-item label{
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  display: block;
+  margin-top: -5px;
+}
+/* 轮播图 */
+.swiper {
+  margin: 20rpx 0;
+}
+.swiper-img {
+  width: 100%;
+}
+/* 酒店 */
+.hotal {
+  width: 92%;
+  height: 90px;
+  margin: 0 auto;
+  border: 1px solid beige;
+  border-radius: 10px;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  background-color: white;
+}
+.hotal-left {
+  flex: 2;
+}
+.name {
+  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+}
+.info {
+  height: 30rpx;
+  line-height: 30rpx;
+}
+.num {
+  color: #f90;
+}
+.char {
+  color: #f90;
+}
+.hotal-price {
+  height: 30rpx;
+  line-height: 30rpx;
+  padding: 5px 0px;
+}
+.price {
+  color: #f60;
+  font-size: 14px;
+}
+.start {
+  font-size: 10px;
+  color: #999;
+}
+.tag {
+  border: 1px solid #ccc;
+  padding: 0 3px;
+  margin-right: 3px;
+  border-radius: 3px;
+}
+.hotal-right {
+  flex: 1;
+}
+.hotal-img {
+  width: 100%;
+  height: 100%;
+}
