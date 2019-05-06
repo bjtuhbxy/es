@@ -4,7 +4,7 @@
       <el-col :span="18" :offset="3">
         <el-col :span="6">
           <ul>
-            <li v-for="item in ul">
+            <li v-for="(item,index) in ul" :key="index">
               {{item.api}}
             </li>
           </ul>
@@ -27,12 +27,12 @@ export default {
   name: 'home',
   data () {
     return {
-      ul:[
+      ul: [
         {
-          api:'users'
+          api: 'users'
         },
         {
-          api:'goods'
+          api: 'goods'
         }
       ]
     }
