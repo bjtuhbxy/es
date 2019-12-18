@@ -38,6 +38,9 @@
   width: 100%;
 }
 /* 酒店 */
+.hotal-view {
+  margin-bottom: 20rpx;
+}
 .hotal {
   width: 92%;
   height: 90px;

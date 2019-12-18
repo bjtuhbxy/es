@@ -20,7 +20,8 @@
       </swiper-item>
     </block>
   </swiper>
-  <view class='hotal' wx:for="{{hotal}}" wx:key="*this">
+  <view class='hotal-view'>
+    <view class='hotal' wx:for="{{hotal}}" wx:key="*this">
     <view class='hotal-left'>
       <label class='name'>{{item.name}}</label>
       <view class='info'>
@@ -38,5 +39,6 @@
     <view class='hotal-right'>
       <image class='hotal-img' src="https://p1.meituan.net/216.0/tdchotel/9488361fa7998bf7945b102b298e0ca1120408.jpg"></image>
     </view>
+  </view>
   </view>
 </view>
